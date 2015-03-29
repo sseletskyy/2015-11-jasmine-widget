@@ -1,0 +1,20 @@
+{
+  "name": "2015-03-jasmine-widget",
+  "version": "0.0.1",
+  "homepage": "https://github.com/sseletskyy/2015-03-jasmine-widget",
+  "authors": [
+    "Serge Seletskyy <sergey@clcoudconsulting.no>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "jasmine-ajax": "~3.1.0"
+  }
+}
