@@ -28,10 +28,34 @@ describe("TemperatureWidget", function () {
     });
 
     describe("when initialized", function () {
-        it("should fetch temperrature from server", function () {
-            console.log("jasmine.Ajax.requests.mostRecent()");
-            console.log(jasmine.Ajax.requests.mostRecent());
+        it("should fetch temperature from server", function () {
+            expect(jasmine.Ajax.requests.mostRecent().url).toEqual("/api/temperature");
+        });
+    });
+
+    describe("when rendered", function () {
+        it("display temperature as '22 C", function () {
+           expect($container.find('.temperature-widget').text()).toEqual('22 C');
         });
     });
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
