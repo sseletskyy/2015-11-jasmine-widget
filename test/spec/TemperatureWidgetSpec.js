@@ -27,6 +27,11 @@ describe("TemperatureWidget", function () {
         widget = new TemperatureWidget($container);
     });
 
-
+    describe("when initialized", function () {
+        it("should fetch temperrature from server", function () {
+            console.log("jasmine.Ajax.requests.mostRecent()");
+            console.log(jasmine.Ajax.requests.mostRecent());
+        });
+    });
 
 });
