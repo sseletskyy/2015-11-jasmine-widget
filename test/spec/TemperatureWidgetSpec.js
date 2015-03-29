@@ -60,14 +60,16 @@ describe("TemperatureWidget", function () {
             expect($container.find('button.temperature-refresh').size()).toEqual(1);
         });
 
-        describe("when refresh button is clicked", function () {
-            beforeEach(function () {
-                $container.find('button.temperature-refresh').click();
-            });
+    });
 
-            it("should update temperature", function () {
-                expect($container.find('.temperature-widget').text()).toEqual('22 C');
-            });
+    describe("when refreshed button is clicked", function () {
+        beforeEach(function () {
+            fakeAjax(5);
+            $container.find('button.temperature-refresh').click();
+        });
+
+        it("should update temperature", function () {
+            expect($container.find('.temperature-widget').text()).toEqual('5 C');
         });
     });
 
