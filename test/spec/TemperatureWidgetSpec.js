@@ -34,8 +34,22 @@ describe("TemperatureWidget", function () {
     });
 
     describe("when rendered", function () {
+        beforeEach(function () {
+            var fakeSuccess = {
+                'status': 200,
+                'content/type': 'application/json',
+                'responseText': JSON.stringify({"temperature": 22})
+            }
+            jasmine.Ajax.requests.mostRecent().respondWith(fakeSuccess)
+        });
+
+        beforeEach(function () {
+            widget.render();
+        })
+
         it("display temperature as '22 C", function () {
-           expect($container.find('.temperature-widget').text()).toEqual('22 C');
+            expect($container.find('.temperature-widget').size()).toEqual(1);
+            expect($container.find('.temperature-widget').text()).toEqual('22 C');
         });
     });
 
