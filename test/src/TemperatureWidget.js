@@ -7,7 +7,8 @@ function TemperatureWidget($parent) {
         this.dataPromise.done(function(data){
             $textDiv = '<div class="temperature-widget">' +
             data.temperature +
-            ' C</div>';
+            ' C</div>' +
+            '<button class="temperature-refresh"></button>';
 
             self.$parent.append($textDiv);
 

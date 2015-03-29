@@ -3,6 +3,15 @@ describe("TemperatureWidget", function () {
     var widget;
     var $container;
 
+    var fakeAjax = function (value) {
+        var fakeSuccess = {
+            'status': 200,
+            'content/type': 'application/json',
+            'responseText': JSON.stringify({"temperature": value})
+        }
+        jasmine.Ajax.requests.mostRecent().respondWith(fakeSuccess)
+    }
+
     beforeEach(function () {
         jasmine.Ajax.install();
     });
@@ -35,23 +44,33 @@ describe("TemperatureWidget", function () {
 
     describe("when rendered", function () {
         beforeEach(function () {
-            var fakeSuccess = {
-                'status': 200,
-                'content/type': 'application/json',
-                'responseText': JSON.stringify({"temperature": 22})
-            }
-            jasmine.Ajax.requests.mostRecent().respondWith(fakeSuccess)
+            fakeAjax(22);
         });
 
         beforeEach(function () {
             widget.render();
         })
 
-        it("display temperature as '22 C", function () {
+        it("should display temperature as '22 C", function () {
             expect($container.find('.temperature-widget').size()).toEqual(1);
             expect($container.find('.temperature-widget').text()).toEqual('22 C');
         });
+
+        it("should contain a refresh button", function () {
+            expect($container.find('button.temperature-refresh').size()).toEqual(1);
+        });
+
+        describe("when refresh button is clicked", function () {
+            beforeEach(function () {
+                $container.find('button.temperature-refresh').click();
+            });
+
+            it("should update temperature", function () {
+                expect($container.find('.temperature-widget').text()).toEqual('22 C');
+            });
+        });
     });
+
 
 });
 
